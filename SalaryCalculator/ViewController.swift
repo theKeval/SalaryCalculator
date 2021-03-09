@@ -73,21 +73,58 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return qualifications[row]
     }
+    var prevSelectedQualif = -1
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         // changing salary value according to the selected row of pickerView
         switch row {
             case 0:
-                salary = Double(55000)
-                txtSalary.text = String(salary)
+                if prevSelectedQualif == 1 {
+                    salary += 8000
+                    txtSalary.text = String(salary)
+                }
+                else if prevSelectedQualif == 2 {
+                    salary += 15000
+                    txtSalary.text = String(salary)
+                }
+                else if prevSelectedQualif == -1 {
+                    salary = Double(55000)
+                    txtSalary.text = String(salary)
+                }
+                
+                prevSelectedQualif = 0
                 
             case 1:
-                salary = Double(47000)
-                txtSalary.text = String(salary)
+                if prevSelectedQualif == 0 {
+                    salary -= 8000
+                    txtSalary.text = String(salary)
+                }
+                else if prevSelectedQualif == 2 {
+                    salary += 7000
+                    txtSalary.text = String(salary)
+                }
+                else if prevSelectedQualif == -1 {
+                    salary = Double(47000)
+                    txtSalary.text = String(salary)
+                }
+                
+                prevSelectedQualif = 1
                 
             case 2:
-                salary = Double(40000)
-                txtSalary.text = String(salary)
+                if prevSelectedQualif == 0 {
+                    salary -= 15000
+                    txtSalary.text = String(salary)
+                }
+                else if prevSelectedQualif == 1 {
+                    salary -= 7000
+                    txtSalary.text = String(salary)
+                }
+                else if prevSelectedQualif == -1 {
+                    salary = Double(40000)
+                    txtSalary.text = String(salary)
+                }
+                
+                prevSelectedQualif = 2
                 
             default:
                 salary = Double(0)
