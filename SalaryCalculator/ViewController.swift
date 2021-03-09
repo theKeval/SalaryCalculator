@@ -301,7 +301,39 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
-//    var increasedWithExp = false
+    var increasedWithExp = false
+    @IBAction func calculateClicked(_ sender: UIButton) {
+        
+//        if fieldExperience.text == nil {
+//
+//            return
+//        }
+        
+        if let txtExp = fieldExperience.text {
+            if txtExp.isEmpty {
+                txtSalary.text = String(salary)
+                increasedWithExp = false
+            }
+            if let exp = Int(txtExp) {
+                if exp > 3 {
+                    txtSalary.text = String(salary + 10_000)
+                    increasedWithExp = true
+                }
+                else {
+                    if increasedWithExp {
+                        txtSalary.text = String(salary)
+                        increasedWithExp = false
+                    }
+                }
+            }
+        }
+        else {
+            txtSalary.text = String(salary)
+            increasedWithExp = false
+        }
+        
+    }
+    
 //    var salaryBeforeExp = Double(0)
     
     @IBAction func experienceChanged(_ sender: UITextField) {
