@@ -67,66 +67,83 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    // this function will calculate the number of rows required to add in pickerView
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return qualifications.count
     }
+    // this function will set the row value string from the list of qualification
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return qualifications[row]
     }
+    // keeping the previous selected qualification to check and re-calculate salary by changing
+    // basic salary of specific qualification
     var prevSelectedQualif = -1
+    // this function will be triggered when picker view item selection will be changed
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         // changing salary value according to the selected row of pickerView
         switch row {
             case 0:
+                // base salary difference for transition from 'diploma' to 'bachelor'
                 if prevSelectedQualif == 1 {
                     salary += 8000
                     txtSalary.text = String(salary)
                 }
+                // base salary difference for transition from 'high school' to 'bachelor'
                 else if prevSelectedQualif == 2 {
                     salary += 15000
                     txtSalary.text = String(salary)
                 }
+                // if this selection is initial selection
                 else if prevSelectedQualif == -1 {
                     salary = Double(55000)
                     txtSalary.text = String(salary)
                 }
                 
+                // setting the previous selection variable to 'bachelor'
                 prevSelectedQualif = 0
                 
             case 1:
+                // base salary difference for transition from 'bachelor' to 'diploma'
                 if prevSelectedQualif == 0 {
                     salary -= 8000
                     txtSalary.text = String(salary)
                 }
+                // base salary difference for transition from 'high school' to 'diploma'
                 else if prevSelectedQualif == 2 {
                     salary += 7000
                     txtSalary.text = String(salary)
                 }
+                // if this selection is initial selection
                 else if prevSelectedQualif == -1 {
                     salary = Double(47000)
                     txtSalary.text = String(salary)
                 }
                 
+                // setting the previous selection variable to 'diploma'
                 prevSelectedQualif = 1
                 
             case 2:
+                // base salary difference for transition from 'bachelor' to 'high school'
                 if prevSelectedQualif == 0 {
                     salary -= 15000
                     txtSalary.text = String(salary)
                 }
+                // base salary difference for transition from 'diploma' to 'high school'
                 else if prevSelectedQualif == 1 {
                     salary -= 7000
                     txtSalary.text = String(salary)
                 }
+                // if this selection is initial selection
                 else if prevSelectedQualif == -1 {
                     salary = Double(40000)
                     txtSalary.text = String(salary)
                 }
                 
+                // setting the previous selection variable to 'high shcool'
                 prevSelectedQualif = 2
                 
-            default:
+            default:    // default case - setting salary 0
                 salary = Double(0)
                 txtSalary.text = String(salary)
         }
