@@ -60,7 +60,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         pickerView(qualificationPicker, didSelectRow: 0, inComponent: 1)
         
         // setting salary text with salary variable
-        txtSalary.text = String(salary)
+        txtSalary.text = String(format: "%.2f", salary)
     }
     
     // supporting functions for UIPickerView
@@ -87,17 +87,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 // base salary difference for transition from 'diploma' to 'bachelor'
                 if prevSelectedQualif == 1 {
                     salary += 8000
-                    txtSalary.text = String(salary)
+                    txtSalary.text = String(format: "%.2f", salary)
                 }
                 // base salary difference for transition from 'high school' to 'bachelor'
                 else if prevSelectedQualif == 2 {
-                    salary += 15000
-                    txtSalary.text = String(salary)
+                    salary += 15_000
+                    txtSalary.text = String(format: "%.2f", salary)
                 }
                 // if this selection is initial selection
                 else if prevSelectedQualif == -1 {
-                    salary = Double(55000)
-                    txtSalary.text = String(salary)
+                    salary = Double(55_000)
+                    txtSalary.text = String(format: "%.2f", salary)
                 }
                 
                 // setting the previous selection variable to 'bachelor'
@@ -107,17 +107,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 // base salary difference for transition from 'bachelor' to 'diploma'
                 if prevSelectedQualif == 0 {
                     salary -= 8000
-                    txtSalary.text = String(salary)
+                    txtSalary.text = String(format: "%.2f", salary)
                 }
                 // base salary difference for transition from 'high school' to 'diploma'
                 else if prevSelectedQualif == 2 {
                     salary += 7000
-                    txtSalary.text = String(salary)
+                    txtSalary.text = String(format: "%.2f", salary)
                 }
                 // if this selection is initial selection
                 else if prevSelectedQualif == -1 {
-                    salary = Double(47000)
-                    txtSalary.text = String(salary)
+                    salary = Double(47_000)
+                    txtSalary.text = String(format: "%.2f", salary)
                 }
                 
                 // setting the previous selection variable to 'diploma'
@@ -126,18 +126,18 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             case 2:
                 // base salary difference for transition from 'bachelor' to 'high school'
                 if prevSelectedQualif == 0 {
-                    salary -= 15000
-                    txtSalary.text = String(salary)
+                    salary -= 15_000
+                    txtSalary.text = String(format: "%.2f", salary)
                 }
                 // base salary difference for transition from 'diploma' to 'high school'
                 else if prevSelectedQualif == 1 {
                     salary -= 7000
-                    txtSalary.text = String(salary)
+                    txtSalary.text = String(format: "%.2f", salary)
                 }
                 // if this selection is initial selection
                 else if prevSelectedQualif == -1 {
-                    salary = Double(40000)
-                    txtSalary.text = String(salary)
+                    salary = Double(40_000)
+                    txtSalary.text = String(format: "%.2f", salary)
                 }
                 
                 // setting the previous selection variable to 'high shcool'
@@ -145,7 +145,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 
             default:    // default case - setting salary 0
                 salary = Double(0)
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
         }
         
     }
@@ -193,7 +193,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             if let kids = Int(kidsCount.text!) {
                 if kids > 0 {
                     salary -= Double(kids * 7000)
-                    txtSalary.text = String(salary)
+                    txtSalary.text = String(format: "%.2f", salary)
                     stepperKids.value = stepperKids.minimumValue
                     kidsCount.text = String(0)
                 }
@@ -215,7 +215,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         // show the kids count in lable after each add/remove click
         kidsCount.text = String(Int(sender.value))
         // update the salary text
-        txtSalary.text = String(salary)
+        txtSalary.text = String(format: "%.2f", salary)
     }
     
     // checkbox click events to select programming languages
@@ -234,7 +234,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             else {  // if no language from same category is selected -> remove 5k for current deselection
                 salary -= 5000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
             }
             
         }
@@ -247,7 +247,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             else {  // if no category is selected -> add 5k for current selection
                 salary += 5000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
             }
             
         }
@@ -262,7 +262,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             else {
                 salary -= 5000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
             }
             
         }
@@ -274,7 +274,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             else {
                 salary += 5000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
             }
             
         }
@@ -288,7 +288,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             else {
                 salary -= 5000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
             }
             
         }
@@ -300,7 +300,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             else {
                 salary += 5000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
             }
             
         }
@@ -317,7 +317,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             else {
                 salary -= 3000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
             }
             
         }
@@ -329,7 +329,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             else {
                 salary += 3000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
             }
             
         }
@@ -343,7 +343,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             else {
                 salary -= 3000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
             }
             
         }
@@ -355,7 +355,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             else {
                 salary += 3000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
             }
             
         }
@@ -369,7 +369,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             else {
                 salary -= 3000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
             }
             
         }
@@ -381,7 +381,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             else {
                 salary += 3000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
             }
             
         }
@@ -412,7 +412,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             // remove the 10k from salary
             if txtExp.isEmpty && increasedWithExp {
                 salary -= 10_000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
                 increasedWithExp = false
             }
             
@@ -424,7 +424,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     if !increasedWithExp {
                         // salaryBeforeExp = salary
                         salary += 10_000
-                        txtSalary.text = String(salary)
+                        txtSalary.text = String(format: "%.2f", salary)
                         
                         // set increasedWithExp variable to 'true' only in this case.
                         increasedWithExp = true
@@ -437,7 +437,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     // previously added >3 years to <3 years
                     if increasedWithExp {
                         salary -= 10_000
-                        txtSalary.text = String(salary)
+                        txtSalary.text = String(format: "%.2f", salary)
                         increasedWithExp = false
                     }
                 }
@@ -449,7 +449,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             // by removing 10k from salary
             if increasedWithExp {
                 salary -= 10_000
-                txtSalary.text = String(salary)
+                txtSalary.text = String(format: "%.2f", salary)
                 increasedWithExp = false
             }
         }
