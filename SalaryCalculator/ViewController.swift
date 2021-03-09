@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    
+    // Outlet of UI Elements
     @IBOutlet weak var qualificationPicker: UIPickerView!
     @IBOutlet weak var btnSingle: UIButton!
     @IBOutlet weak var btnNotSingle: UIButton!
@@ -30,10 +32,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var fieldExperience: UITextField!
     
     @IBOutlet weak var txtSalary: UILabel!
+    // -----------------------
     
+    // Variable declarations
     var qualifications = ["Bachelor", "Diploma", "High School"]
     var salary = Double(0)
+    // -----------------------
     
+    // function called when the screen will be loaded
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -52,6 +58,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         txtSalary.text = String(salary)
     }
     
+    // supporting functions for UIPickerView
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -81,7 +88,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 txtSalary.text = String(salary)
         }
     }
+    // -----------------------
     
+    // radio button click actions
     @IBAction func btnSingleClicked(_ sender: UIButton) {
         btnSingle.isSelected = true
         btnNotSingle.isSelected = false
@@ -90,7 +99,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         btnSingle.isSelected = false
         btnNotSingle.isSelected = true
     }
-
+    // -----------------------
+    
+    // action for UISwitch to ask have kids.
     @IBAction func switchKids(_ sender: UISwitch) {
         if sender.isOn {
             lableKidsYes.isEnabled = true
@@ -119,6 +130,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             
         }
     }
+    // stepper action to increase or decrease number of kids
     @IBAction func stepperClick(_ sender: UIStepper) {
     
         if sender.value > Double(kidsCount.text!)! {
@@ -132,7 +144,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         txtSalary.text = String(salary)
     }
     
-    
+    // checkbox click events to select programming languages
     @IBAction func btnSwiftClicked(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
@@ -300,9 +312,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             sender.isSelected = true
         }
     }
+    // -----------------------
     
+    // taking a temporary variable to keep an eye on
+    // whether we have increased the salary based on experience OR not
     var increasedWithExp = false
-    // var salaryBeforeExp = Double(0)
+    // click action handler for Calculate button
     @IBAction func calculateClicked(_ sender: UIButton) {
         
         // salaryBeforeExp = salary
@@ -344,7 +359,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
     }
     
-    
+    // tried to update salary on textField text changed handler
+    // but it didn't worked. so removed it
     @IBAction func experienceChanged(_ sender: UITextField) {
 //        salaryBeforeExp = salary
 //
