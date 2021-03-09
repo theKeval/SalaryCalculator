@@ -95,6 +95,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         if sender.isOn {
             lableKidsYes.isEnabled = true
             lableKidsNo.isEnabled = false
+            
             lableKidsNumber.isEnabled = true
             stepperKids.isEnabled = true
             kidsCount.isEnabled = true
@@ -102,10 +103,20 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         else {
             lableKidsYes.isEnabled = false
             lableKidsNo.isEnabled = true
+            
             lableKidsNumber.isEnabled = false
             stepperKids.isEnabled = false
             kidsCount.isEnabled = false
-            kidsCount.text = String(0)
+            
+            if let kids = Int(kidsCount.text!) {
+                if kids > 0 {
+                    salary -= Double(kids * 7000)
+                    txtSalary.text = String(salary)
+                    stepperKids.value = stepperKids.minimumValue
+                    kidsCount.text = String(0)
+                }
+            }
+            
         }
     }
     
