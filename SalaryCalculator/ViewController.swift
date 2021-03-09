@@ -98,6 +98,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     // -----------------------
     
     // radio button click actions
+    // being single or not does not make any difference for salary increment 🙁
     @IBAction func btnSingleClicked(_ sender: UIButton) {
         // making sure only one of the radio button will be selected
         btnSingle.isSelected = true
@@ -164,14 +165,20 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     // checkbox click events to select programming languages
+    // note: similar condition check have been applied in all programming language
+    // checkbox selection. comment of condition is mentioned in SwiftClicked.
     @IBAction func btnSwiftClicked(_ sender: UIButton) {
+        
+        // condition based on checkbox selection state
         if sender.isSelected {
             sender.isSelected = false
             
+            // condition to check whether any of the three programming languages from same category
+            // is already selected or not.
             if btnPython.isSelected || btnR.isSelected {
                 // do nothing
             }
-            else {
+            else {  // if no language from same category is selected -> remove 5k for current deselection
                 salary -= 5000
                 txtSalary.text = String(salary)
             }
@@ -180,10 +187,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         else {
             sender.isSelected = true
             
+            // same condition to check if any of the language from same category is selected or not
             if btnPython.isSelected || btnR.isSelected {
                 // do nothing
             }
-            else {
+            else {  // if no category is selected -> add 5k for current selection
                 salary += 5000
                 txtSalary.text = String(salary)
             }
@@ -244,6 +252,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
+    // second category of programming language selection
+    // selecting any one of this language will add 3k to salary
     @IBAction func btnJavaClicked(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
@@ -323,6 +333,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
+    // knowing php is not important. So we'll not reward the employee for this 😕
     @IBAction func btnPhpClicked(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
@@ -337,26 +348,39 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     // whether we have increased the salary based on experience OR not
     var increasedWithExp = false
     // click action handler for Calculate button
+    // this button mainly handles the salary difference based on years of experience.
     @IBAction func calculateClicked(_ sender: UIButton) {
         
+        // check if the years of experience field text is not null
         if let txtExp = fieldExperience.text {
+            // if the years of experience filed is empty and we did increased the salary before
+            // it means the user have removed the previously added years, so reset the salary and
+            // remove the 10k from salary
             if txtExp.isEmpty && increasedWithExp {
                 salary -= 10_000
                 txtSalary.text = String(salary)
                 increasedWithExp = false
             }
             
+            // if the years of experience is and integer parsable, only then proceed
             if let exp = Int(txtExp) {
+                // if years of experience is greater than 3
                 if exp > 3 {
+                    // and if user did not already increased the salary -> add 10k in salary
                     if !increasedWithExp {
                         // salaryBeforeExp = salary
                         salary += 10_000
                         txtSalary.text = String(salary)
+                        
+                        // set increasedWithExp variable to 'true' only in this case.
                         increasedWithExp = true
                     }
                     
                 }
-                else {
+                else {  // if years of experience is less than 3
+                    // and if we have already added 10k for increased salary -> remove 10k
+                    // because user have changed the years of experience from
+                    // previously added >3 years to <3 years
                     if increasedWithExp {
                         salary -= 10_000
                         txtSalary.text = String(salary)
@@ -366,7 +390,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
             
         }
-        else {
+        else {  // if somehow years of experience field text is null
+            // and if we already have increased the salary then reset the salary
+            // by removing 10k from salary
             if increasedWithExp {
                 salary -= 10_000
                 txtSalary.text = String(salary)
