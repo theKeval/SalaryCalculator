@@ -105,14 +105,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             lableKidsNumber.isEnabled = false
             stepperKids.isEnabled = false
             kidsCount.isEnabled = false
-            kidsCount.text = "0"
+            kidsCount.text = String(0)
         }
     }
     
     @IBAction func stepperClick(_ sender: UIStepper) {
-        kidsCount.text = String(Int(sender.value))
+    
+        if sender.value > Double(kidsCount.text!)! {
+            salary += 7000   // (sender.value * 7000)
+        }
+        else {
+            salary -= 7000
+        }
         
-        txtSalary.text = Double(txtSalary.text!) +
+        kidsCount.text = String(Int(sender.value))
+        txtSalary.text = String(salary)
     }
     
     @IBAction func btnJavaClicked(_ sender: UIButton) {
