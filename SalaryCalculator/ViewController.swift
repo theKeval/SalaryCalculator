@@ -119,7 +119,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             
         }
     }
-    
     @IBAction func stepperClick(_ sender: UIStepper) {
     
         if sender.value > Double(kidsCount.text!)! {
@@ -133,30 +132,166 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         txtSalary.text = String(salary)
     }
     
-    @IBAction func btnJavaClicked(_ sender: UIButton) {
+    
+    @IBAction func btnSwiftClicked(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
+            
+            if btnPython.isSelected || btnR.isSelected {
+                // do nothing
+            }
+            else {
+                salary -= 5000
+                txtSalary.text = String(salary)
+            }
+            
         }
         else {
             sender.isSelected = true
+            
+            if btnPython.isSelected || btnR.isSelected {
+                // do nothing
+            }
+            else {
+                salary += 5000
+                txtSalary.text = String(salary)
+            }
+            
+        }
+        
+    }
+    @IBAction func btnPythonClicked(_ sender: UIButton) {
+        if sender.isSelected {
+            sender.isSelected = false
+            
+            if btnSwift.isSelected || btnR.isSelected {
+                // do nothing
+            }
+            else {
+                salary -= 5000
+                txtSalary.text = String(salary)
+            }
+            
+        }
+        else {
+            sender.isSelected = true
+            
+            if btnSwift.isSelected || btnR.isSelected {
+                // do nothing
+            }
+            else {
+                salary += 5000
+                txtSalary.text = String(salary)
+            }
+            
+        }
+    }
+    @IBAction func btnRClicked(_ sender: UIButton) {
+        if sender.isSelected {
+            sender.isSelected = false
+            
+            if btnPython.isSelected || btnSwift.isSelected {
+                // do nothing
+            }
+            else {
+                salary -= 5000
+                txtSalary.text = String(salary)
+            }
+            
+        }
+        else {
+            sender.isSelected = true
+            
+            if btnPython.isSelected || btnSwift.isSelected {
+                // do nothing
+            }
+            else {
+                salary += 5000
+                txtSalary.text = String(salary)
+            }
+            
+        }
+    }
+    
+    @IBAction func btnJavaClicked(_ sender: UIButton) {
+        if sender.isSelected {
+            sender.isSelected = false
+            
+            if btnJavaScript.isSelected || btnCSharp.isSelected {
+                // do nothing
+            }
+            else {
+                salary -= 3000
+                txtSalary.text = String(salary)
+            }
+            
+        }
+        else {
+            sender.isSelected = true
+            
+            if btnJavaScript.isSelected || btnCSharp.isSelected {
+                // do nothing
+            }
+            else {
+                salary += 3000
+                txtSalary.text = String(salary)
+            }
+            
+        }
+    }
+    @IBAction func btnJavascriptClicked(_ sender: UIButton) {
+        if sender.isSelected {
+            sender.isSelected = false
+            
+            if btnJava.isSelected || btnCSharp.isSelected {
+                // do nothing
+            }
+            else {
+                salary -= 3000
+                txtSalary.text = String(salary)
+            }
+            
+        }
+        else {
+            sender.isSelected = true
+            
+            if btnJava.isSelected || btnCSharp.isSelected {
+                // do nothing
+            }
+            else {
+                salary += 3000
+                txtSalary.text = String(salary)
+            }
+            
         }
     }
     @IBAction func btnCSharpClicked(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
+            
+            if btnJavaScript.isSelected || btnJava.isSelected {
+                // do nothing
+            }
+            else {
+                salary -= 3000
+                txtSalary.text = String(salary)
+            }
+            
         }
         else {
             sender.isSelected = true
+            
+            if btnJavaScript.isSelected || btnJava.isSelected {
+                // do nothing
+            }
+            else {
+                salary += 3000
+                txtSalary.text = String(salary)
+            }
+            
         }
     }
-    @IBAction func btnSwiftClicked(_ sender: UIButton) {
-        if sender.isSelected {
-            sender.isSelected = false
-        }
-        else {
-            sender.isSelected = true
-        }
-    }
+    
     @IBAction func btnPhpClicked(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
@@ -165,31 +300,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             sender.isSelected = true
         }
     }
-    @IBAction func btnPythonClicked(_ sender: UIButton) {
-        if sender.isSelected {
-            sender.isSelected = false
-        }
-        else {
-            sender.isSelected = true
-        }
-    }
-    @IBAction func btnRClicked(_ sender: UIButton) {
-        if sender.isSelected {
-            sender.isSelected = false
-        }
-        else {
-            sender.isSelected = true
-        }
-    }
-    @IBAction func btnJavascriptClicked(_ sender: UIButton) {
-        if sender.isSelected {
-            sender.isSelected = false
-        }
-        else {
-            sender.isSelected = true
-        }
-    }
-    
     
 }
 
