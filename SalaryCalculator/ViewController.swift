@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var qualificationPicker: UIPickerView!
     @IBOutlet weak var btnSingle: UIButton!
@@ -48,8 +48,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         kidsCount.isEnabled = false
         
         pickerView(qualificationPicker, didSelectRow: 0, inComponent: 1)
-        
-        fieldExperience.delegate = self
         
         txtSalary.text = String(salary)
     }
@@ -300,20 +298,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
         else {
             sender.isSelected = true
-        }
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let _ = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) {
-            return true
-        }
-        else {
-            if let _ = string.rangeOfCharacter(from: NSCharacterSet.controlCharacters) {
-                return true
-            }
-            else {
-                return false
-            }
         }
     }
     
