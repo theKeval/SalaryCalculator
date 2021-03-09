@@ -301,5 +301,30 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
+//    var increasedWithExp = false
+//    var salaryBeforeExp = Double(0)
+    
+    @IBAction func experienceChanged(_ sender: UITextField) {
+//        salaryBeforeExp = salary
+//
+//        if let txtExp = sender.text {
+//            if let exp = Int(txtExp) {
+//                if exp > 3 {
+//                    salary += 10_000
+//                    txtSalary.text = String(salary)
+//                    increasedWithExp = true
+//                }
+//                else {
+//                    if increasedWithExp {
+//                        salary -= 10_000
+//                        txtSalary.text = String(salary)
+//                        increasedWithExp = false
+//                    }
+//                }
+//            }
+//        }
+        
+    }
+    
 }
 
