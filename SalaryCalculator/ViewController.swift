@@ -42,10 +42,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     // function called when the screen will be loaded
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        // setting up UIPickerView by assigning
+        // delegate and datasource to this ViewController
         qualificationPicker.delegate = self
         qualificationPicker.dataSource = self
         
+        // setting kids switch to OFF initially
         switchKids.isOn = false
         lableKidsNo.isEnabled = true
         lableKidsYes.isEnabled = false
@@ -53,8 +56,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         stepperKids.isEnabled = false
         kidsCount.isEnabled = false
         
+        // selecting first row of pickerVIew manually
         pickerView(qualificationPicker, didSelectRow: 0, inComponent: 1)
         
+        // setting salary text with salary variable
         txtSalary.text = String(salary)
     }
     
@@ -69,7 +74,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return qualifications[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // selected row at 'row'
+        
+        // changing salary value according to the selected row of pickerView
         switch row {
             case 0:
                 salary = Double(55000)
@@ -87,15 +93,18 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 salary = Double(0)
                 txtSalary.text = String(salary)
         }
+        
     }
     // -----------------------
     
     // radio button click actions
     @IBAction func btnSingleClicked(_ sender: UIButton) {
+        // making sure only one of the radio button will be selected
         btnSingle.isSelected = true
         btnNotSingle.isSelected = false
     }
     @IBAction func btnNotSingleClicked(_ sender: UIButton) {
+        // making sure only one of the radio button will be selected
         btnSingle.isSelected = false
         btnNotSingle.isSelected = true
     }
@@ -104,21 +113,28 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     // action for UISwitch to ask have kids.
     @IBAction func switchKids(_ sender: UISwitch) {
         if sender.isOn {
+            // enable/disable the Yes/No lable based on the UISwitch
             lableKidsYes.isEnabled = true
             lableKidsNo.isEnabled = false
             
+            // If switch is on, then let the user
+            // increase/decrease number of kids
             lableKidsNumber.isEnabled = true
             stepperKids.isEnabled = true
             kidsCount.isEnabled = true
         }
-        else {
+        else {  // If the user select NO for have kids
+            // enable/disable lable on Switch value changes
             lableKidsYes.isEnabled = false
             lableKidsNo.isEnabled = true
             
+            // disable the UI elements to restrict user from entering number of kids
             lableKidsNumber.isEnabled = false
             stepperKids.isEnabled = false
             kidsCount.isEnabled = false
             
+            // if user turn off the switch for kids and if there are 1 or more kids added already
+            // in that case reset the kidsCount and deduct appropriate amount from salary.
             if let kids = Int(kidsCount.text!) {
                 if kids > 0 {
                     salary -= Double(kids * 7000)
@@ -132,7 +148,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     // stepper action to increase or decrease number of kids
     @IBAction func stepperClick(_ sender: UIStepper) {
-    
+        // condition to check whether the 'plus' button of stepper clicked
+        // or the minus button of stepper clicked. accordingly add/deduct amount from salary.
         if sender.value > Double(kidsCount.text!)! {
             salary += 7000   // (sender.value * 7000)
         }
@@ -140,7 +157,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             salary -= 7000
         }
         
+        // show the kids count in lable after each add/remove click
         kidsCount.text = String(Int(sender.value))
+        // update the salary text
         txtSalary.text = String(salary)
     }
     
@@ -320,8 +339,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     // click action handler for Calculate button
     @IBAction func calculateClicked(_ sender: UIButton) {
         
-        // salaryBeforeExp = salary
-        
         if let txtExp = fieldExperience.text {
             if txtExp.isEmpty && increasedWithExp {
                 salary -= 10_000
@@ -356,30 +373,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 increasedWithExp = false
             }
         }
-        
-    }
-    
-    // tried to update salary on textField text changed handler
-    // but it didn't worked. so removed it
-    @IBAction func experienceChanged(_ sender: UITextField) {
-//        salaryBeforeExp = salary
-//
-//        if let txtExp = sender.text {
-//            if let exp = Int(txtExp) {
-//                if exp > 3 {
-//                    salary += 10_000
-//                    txtSalary.text = String(salary)
-//                    increasedWithExp = true
-//                }
-//                else {
-//                    if increasedWithExp {
-//                        salary -= 10_000
-//                        txtSalary.text = String(salary)
-//                        increasedWithExp = false
-//                    }
-//                }
-//            }
-//        }
         
     }
     
