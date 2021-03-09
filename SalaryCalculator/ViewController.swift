@@ -32,6 +32,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var txtSalary: UILabel!
     
     var qualifications = ["Bachelor", "Diploma", "High School"]
+    var salary = Double(0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,9 +47,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         stepperKids.isEnabled = false
         kidsCount.isEnabled = false
         
+        pickerView(qualificationPicker, didSelectRow: 0, inComponent: 1)
+        
+        txtSalary.text = String(salary)
     }
-    
-    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -61,6 +63,23 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // selected row at 'row'
+        switch row {
+            case 0:
+                salary = Double(55000)
+                txtSalary.text = String(salary)
+                
+            case 1:
+                salary = Double(47000)
+                txtSalary.text = String(salary)
+                
+            case 2:
+                salary = Double(40000)
+                txtSalary.text = String(salary)
+                
+            default:
+                salary = Double(0)
+                txtSalary.text = String(salary)
+        }
     }
     
     @IBAction func btnSingleClicked(_ sender: UIButton) {
@@ -92,6 +111,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     @IBAction func stepperClick(_ sender: UIStepper) {
         kidsCount.text = String(Int(sender.value))
+        
+        txtSalary.text = Double(txtSalary.text!) +
     }
     
     @IBAction func btnJavaClicked(_ sender: UIButton) {
