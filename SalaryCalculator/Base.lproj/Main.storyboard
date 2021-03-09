@@ -270,8 +270,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nyz-fZ-Tyd">
-                                <rect key="frame" x="289" y="721" width="64" height="30"/>
+                                <rect key="frame" x="285" y="722" width="75" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Calculate"/>
                                 <connections>
                                     <action selector="calculateClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oeH-hV-M5k"/>
